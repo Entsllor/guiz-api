@@ -1,3 +1,4 @@
+import httpx
 from httpx import AsyncClient
 from sqlalchemy import select
 
@@ -13,7 +14,10 @@ async def get_not_existence_questions_ids(db, ids: set[int]):
 
 
 async def fetch_questions(count) -> list[QuestionOut]:
-    response = await client.get(f"https://jservice.io/api/random?count={count}")
+    try:
+        response = await client.get(f"https://jservice.io/api/random?count={count}")
+    except httpx.ConnectTimeout:
+        return []
     return [QuestionOut(**question) for question in response.json()]
 
 
@@ -21,7 +25,7 @@ async def create_questions(db, count):
     new_questions = []
     new_ids = set()
     response_count = 0
-    while len(new_ids) != count:
+    while len(new_ids) < count:
         fetched_questions = await fetch_questions(count)
         response_count += 1
         question_ids = {question.id for question in fetched_questions}
