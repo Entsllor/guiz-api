@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, conint
 from pydantic.datetime_parse import parse_datetime
 
 
 class QuestionsCreate(BaseModel):
-    questions_num: int = 1
+    questions_num: conint(le=100) = 1
 
 
 class QuestionOut(BaseModel):
