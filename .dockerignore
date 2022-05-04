@@ -1,0 +1,15 @@
+**
+
+!app/core
+!app/api
+!app/models
+!app/schemas
+!app/utils
+!app/__init__.py
+!app/main.py
+!requirements.txt
+!migrations
+!run.sh
+!alembic.ini
+
+**/__pycache__
