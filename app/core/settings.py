@@ -7,6 +7,7 @@ BASE_PATH = Path(__file__).parent.parent
 
 class Settings(BaseSettings):
     DB_URL: str = "postgresql+asyncpg://user:pass@localhost:5432/postgres"
+    TEST_DB_URL: str = "postgresql+asyncpg://user:pass@localhost:5430/test"
     DB_ECHO: bool = True
 
     class Config:
