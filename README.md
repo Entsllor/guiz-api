@@ -57,3 +57,34 @@ Just write this command
 ```shell
 docker-compose up --build
 ```
+
+### Post request example
+
+```shell
+curl -X 'POST' \
+  'http://0.0.0.0:8000/api/v1/questions/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "questions_num": 2
+}'
+```
+
+### Post response examole
+```json
+[
+  {
+    "id": 67532,
+    "answer": "News Corp.",
+    "question": "In 2004 this corp. whose holdings include 20th Century Fox, announced plans to reincorporate in the U.S.",
+    "created_at": "2014-02-11T23:29:34.569000"
+  },
+  {
+    "id": 67533,
+    "answer": "the heart",
+    "question": "King Kalakaua, who helped revive the ancient hula, said hula is this kind of beat \"of the Hawaiian people\"",
+    "created_at": "2014-02-11T23:29:34.593000"
+  }
+]
+```
+
