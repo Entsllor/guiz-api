@@ -6,8 +6,9 @@ from ..core.database import Base
 
 
 class Question(Base):
-    __table_name__ = 'question'
+    __tablename__ = 'question'
     id = Column(Integer, primary_key=True, index=True)
     answer = Column(Text)
     question = Column(VARCHAR(length=1023))
-    created_at = Column(DateTime, index=True, default=datetime.now)
+    loaded_at = Column(DateTime(timezone=False), index=True, default=datetime.now)
+    created_at = Column(DateTime(timezone=False))
