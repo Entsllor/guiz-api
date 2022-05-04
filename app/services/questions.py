@@ -22,7 +22,7 @@ async def fetch_questions(count) -> list[QuestionOut]:
 
 
 async def create_questions(db, count):
-    new_questions = []
+    new_questions = {}  # id: question
     new_ids = set()
     response_count = 0
     while len(new_ids) < count:
@@ -30,10 +30,10 @@ async def create_questions(db, count):
         response_count += 1
         question_ids = {question.id for question in fetched_questions}
         new_ids |= await get_not_existence_questions_ids(db, question_ids)
-        new_questions.extend([question for question in fetched_questions if question.id in new_ids])
+        new_questions.update({question.id: question for question in fetched_questions if question.id in new_ids})
         if response_count > 9:
             break
 
-    db_questions = [models.Question(**question.dict()) for question in new_questions[:count]]
+    db_questions = [models.Question(**question.dict()) for question in list(new_questions.values())[:count]]
     db.add_all(db_questions)
     return db_questions
