@@ -22,3 +22,38 @@
 
 В репозитории с заданием должны быть предоставлены инструкции по сборке докер-образа с сервисом из п. 2, его
 настройке и запуску. А также пример запроса к POST API сервиса.
+
+## Installation
+
+```shell
+git clone https://github.com/Entsllor/guiz-api
+```
+
+
+## Pre-requirements
+
+Create ./app/.env file and set env variables
+
+```dotenv
+# ./app/.env
+APP_DB_URL=postgresql+asyncpg://user:pass@db:5432/postgres
+```
+
+If you run project via docker-compose set hostname as 'db' (as in docker-compose.yml file)
+else you can use 'localhost' or any other hostname.
+
+All app variables should start with a specific prefix 'APP_'.
+
+### Install docker and docker-compose
+
+[Install Docker](https://docs.docker.com/engine/install/ubuntu/)
+
+[Install Docker-compose](https://docs.docker.com/compose/install/)
+
+## Run
+
+Just write this command
+
+```shell
+docker-compose up --build
+```
