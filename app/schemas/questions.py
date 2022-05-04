@@ -19,3 +19,6 @@ class QuestionOut(BaseModel):
         date_time = parse_datetime(date_time)
         date_time = date_time.replace(tzinfo=None)
         return date_time
+
+    class Config:
+        orm_mode = True

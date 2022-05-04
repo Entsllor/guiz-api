@@ -5,6 +5,7 @@
 !app/models
 !app/schemas
 !app/utils
+!app/services
 !app/__init__.py
 !app/main.py
 !requirements.txt
