@@ -20,12 +20,16 @@ async def get_not_existence_questions_ids(db, ids: set[int]):
 async def create_question(questions_create: QuestionsCreate, db: AsyncSession = Depends(get_db)):
     new_questions = []
     new_ids = set()
+    response_count = 0
     while len(new_ids) != questions_create.questions_num:
         response = await client.get(f"https://jservice.io/api/random?count={questions_create.questions_num}")
+        response_count += 1
         body = response.json()
         question_ids = {question['id'] for question in body}
         new_ids |= await get_not_existence_questions_ids(db, question_ids)
         new_questions.extend([QuestionOut(**question) for question in body if question['id'] in new_ids])
+        if response_count > 9:
+            break
 
     db_questions = [models.Question(**question.dict()) for question in new_questions]
     db.add_all(db_questions)
