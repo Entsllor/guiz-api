@@ -1,0 +1,17 @@
+fastapi>=0.73
+uvicorn>=0.17.4
+requests>=2.27
+
+#databases
+SQLAlchemy>=1.4
+alembic>=1.7.6
+asyncpg>=0.25
+
+#tests
+pytest>=7.0.1
+pytest-asyncio>=0.18.2
+httpx>=0.22
+
+#utils
+pip-tools>=6.5
+python-dotenv>=0.19.2
