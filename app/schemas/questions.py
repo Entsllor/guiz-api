@@ -5,7 +5,7 @@ from pydantic.datetime_parse import parse_datetime
 
 
 class QuestionsCreate(BaseModel):
-    questions_num: conint(le=100) = 1
+    questions_num: conint(le=100, ge=0) = 1
 
 
 class QuestionOut(BaseModel):
