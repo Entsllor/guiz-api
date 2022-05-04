@@ -16,7 +16,7 @@ async def get_not_existence_questions_ids(db, ids: set[int]):
     return ids - set(existence_ids)
 
 
-@router.post('/', response_model=list[QuestionOut])
+@router.post('/questions/', response_model=list[QuestionOut])
 async def create_question(questions_create: QuestionsCreate, db: AsyncSession = Depends(get_db)):
     new_questions = []
     new_ids = set()

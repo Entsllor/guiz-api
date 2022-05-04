@@ -5,7 +5,7 @@ from app.api import questions
 
 app = FastAPI()
 
-app.include_router(questions.router)
+app.include_router(questions.router, prefix='/api/v1')
 
 if __name__ == '__main__':
     uvicorn.run('main:app')
