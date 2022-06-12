@@ -70,7 +70,7 @@ curl -X 'POST' \
 }'
 ```
 
-### Post response examole
+### Post response example
 ```json
 [
   {
